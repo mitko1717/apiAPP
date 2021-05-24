@@ -7,10 +7,10 @@
 
 // reference here https://github.com/shettynitin667/MovieWiki/blob/master/index.js
 
-const input = document.getElementById('input-field');
-const searchBtn = document.querySelector('.search-btn');
-const container = document.querySelector('.container');
-const totalPages = document.querySelector('.pages');
+// const input = document.getElementById('input-field');
+// const searchBtn = document.querySelector('.search-btn');
+// const container = document.querySelector('.container');
+// const totalPages = document.querySelector('.pages');
 
 const searchMovie = function () {
   fetch(`http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&page=`)
