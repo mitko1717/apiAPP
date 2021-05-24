@@ -26,10 +26,11 @@ const searchMovie = function () {
         console.log(`total results of movies =`, data.totalResults);
         console.log(data);
       }
+
       if (data['Response'] == 'True') {
         for (let i = 1; i <= Math.ceil(data.totalResults / 9); i++) {
-          currentPage++;
           renderPages(data.totalResults);
+          currentPage++;
         }
       }
     })
@@ -39,8 +40,7 @@ const searchMovie = function () {
       console.log('Something went wrong!', error);
     });
 };
-searchMovie(input);
-searchBtn.addEventListener('click', searchMovie);
+
 ///
 const renderList = function (data) {
   const html = `
@@ -59,10 +59,13 @@ const renderList = function (data) {
   container.insertAdjacentHTML('beforeend', html);
 };
 
-const renderPages = function (data) {
-  const pages = `<li class="page">${currentPage - 1}</li>`;
+const renderPages = function () {
+  const pages = `<li class="page">${currentPage}</li>`;
   totalPages.insertAdjacentHTML('beforeend', pages);
 };
+//
+searchMovie(input);
+searchBtn.addEventListener('click', searchMovie);
 
 input.addEventListener('keypress', function (e) {
   if (e.keyCode === 13) {
