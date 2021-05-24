@@ -7,18 +7,25 @@
 
 // reference here https://github.com/shettynitin667/MovieWiki/blob/master/index.js
 
-// const input = document.getElementById('input-field');
-// const searchBtn = document.querySelector('.search-btn');
-// const container = document.querySelector('.container');
-// const totalPages = document.querySelector('.pages');
+const input = document.getElementById('input-field');
+const searchBtn = document.querySelector('.search-btn');
+const container = document.querySelector('.container');
+const totalPages = document.querySelector('.pages');
+let currentPage = 1;
 
 const searchMovie = function () {
-  fetch(`http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&page=`)
+  fetch(
+    `http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&page=${currentPage}`
+  )
     .then(res => {
       return res.json();
     })
     .then(data => {
       container.innerHTML = '';
+      totalPages.innerHTML = '';
+      currentPage = 1;
+      // data.preventDefault();
+      //
       if (data['Response'] == 'True') {
         for (let i = 0; i < 9; i++) {
           renderList(data.Search[i]);
@@ -28,8 +35,9 @@ const searchMovie = function () {
         console.log(data);
       }
       if (data['Response'] == 'True') {
-        for (let i = 1; i == data.totalResults / 10; i++) {
-          renderPages(data.totalResults[i]);
+        for (let i = 1; i <= Math.ceil(data.totalResults / 9); i++) {
+          currentPage++;
+          renderPages(data.totalResults);
         }
       }
     })
@@ -60,7 +68,7 @@ const renderList = function (data) {
 };
 
 const renderPages = function (data) {
-  const pages = `<li class="page">${data.totalResults}</li>`;
+  const pages = `<li class="page">${currentPage - 1}</li>`;
   totalPages.insertAdjacentHTML('beforeend', pages);
 };
 
@@ -71,14 +79,3 @@ input.addEventListener('keypress', function (e) {
     searchBtn.click();
   }
 });
-
-// if (data['Response'] == 'True') {
-//   for (let i = 1; i <= Math.ceil(totalResults / 10); i++) {
-//     renderPages(data.totalPages);
-//   }
-// }
-
-// const renderPages = function (data.totalResults) {
-//   const pages = `<li class="page">${i}</li>`;
-//   totalPages.insertAdjacentHTML('beforeend', pages);
-// };
