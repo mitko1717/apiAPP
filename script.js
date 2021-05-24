@@ -1,12 +1,5 @@
 'use string';
 
-// що-до сторінок, то в юрл можно дописати '&page='
-// в data.totalResults  у тебе лежать скільки всього результатів,
-// data.totalResults / 10 = кількість сторінок, щоб до другої достучатися міняєш тут юрл
-//  fetch(`http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&page=2`)
-
-// reference here https://github.com/shettynitin667/MovieWiki/blob/master/index.js
-
 const input = document.getElementById('input-field');
 const searchBtn = document.querySelector('.search-btn');
 const container = document.querySelector('.container');
@@ -24,8 +17,7 @@ const searchMovie = function () {
       container.innerHTML = '';
       totalPages.innerHTML = '';
       currentPage = 1;
-      // data.preventDefault();
-      //
+
       if (data['Response'] == 'True') {
         for (let i = 0; i < 9; i++) {
           renderList(data.Search[i]);
