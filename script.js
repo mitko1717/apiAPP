@@ -4,11 +4,15 @@ const input = document.getElementById('input-field');
 const searchBtn = document.querySelector('.search-btn');
 const container = document.querySelector('.container');
 const totalPages = document.querySelector('.pages');
-let currentPage = 1;
+const activePage = document.querySelectorAll('.page');
+const selType = document.getElementById('select-type');
+
+let currentPage;
 
 const searchMovie = function () {
+  console.log(selType.value);
   fetch(
-    `http://http://www.omdbapi.com/?apikey=a3ffd3dd&s=batman`
+    `http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&type=${selType.value}&page=${currentPage}`
   )
     .then(res => {
       return res.json();
@@ -21,17 +25,18 @@ const searchMovie = function () {
       if (data['Response'] == 'True') {
         for (let i = 0; i < 9; i++) {
           renderList(data.Search[i]);
-          console.log(data.Search[i].Title, data.Search[i].Year);
         }
-        console.log(`total results of movies =`, data.totalResults);
+        console.log(`total results =`, data.totalResults);
         console.log(data);
       } else container.innerHTML = 'Something went wrong!';
 
       if (data['Response'] == 'True') {
         for (let i = 1; i <= Math.ceil(data.totalResults / 9); i++) {
-          currentPage++;
           renderPages(data.totalResults);
+          currentPage++;
         }
+
+        // activePage.classList.add('active-Page');
       }
     })
     .catch(e => {
@@ -60,7 +65,7 @@ const renderList = function (data) {
 };
 
 const renderPages = function () {
-  const pages = `<li class="page">${currentPage - 1}</li>`;
+  const pages = `<li class="page">${currentPage}</li>`;
   totalPages.insertAdjacentHTML('beforeend', pages);
 };
 //
