@@ -25,12 +25,12 @@ const searchMovie = function () {
         }
         console.log(`total results of movies =`, data.totalResults);
         console.log(data);
-      }
+      } else container.innerHTML = 'Something went wrong!';
 
       if (data['Response'] == 'True') {
         for (let i = 1; i <= Math.ceil(data.totalResults / 9); i++) {
-          renderPages(data.totalResults);
           currentPage++;
+          renderPages(data.totalResults);
         }
       }
     })
@@ -60,7 +60,7 @@ const renderList = function (data) {
 };
 
 const renderPages = function () {
-  const pages = `<li class="page">${currentPage}</li>`;
+  const pages = `<li class="page">${currentPage - 1}</li>`;
   totalPages.insertAdjacentHTML('beforeend', pages);
 };
 //
