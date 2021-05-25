@@ -8,7 +8,7 @@ let currentPage = 1;
 
 const searchMovie = function () {
   fetch(
-    `http://www.omdbapi.com/?apikey=a3ffd3dd&s=${input.value}&page=${currentPage}`
+    `http://http://www.omdbapi.com/?apikey=a3ffd3dd&s=batman`
   )
     .then(res => {
       return res.json();
