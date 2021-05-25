@@ -47,7 +47,7 @@ body {
 .container {
   margin: 3% auto 8%;
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   color: white;
   display: flex;
   flex-wrap: wrap;
@@ -55,46 +55,46 @@ body {
 }
 
 .movie {
-  width: 500px;
-  height: 300px;
+  width: 450px;
+  height: 200px;
   display: flex;
   flex-direction: row;
-  margin: 1.5rem;
+  margin: 1.4rem;
 }
 
 .movie__poster {
-  width: 200px;
-  height: 300px;
+  width: 150px;
+  height: 200px;
 }
 
 .movie__info {
-  margin-left: 20px;
-  width: 300px;
-  height: 300px;
+  margin-left: 25px;
+  width: 250px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .movie__name {
-  font-size: 1.8rem;
-  margin-bottom: 0.7rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .movie__year {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .movie__type {
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.6;
   margin-bottom: 0.5rem;
 }
 
 .details-btn {
   border: none;
   outline: none;
-
+  opacity: 0.9;
   width: 80px;
   height: 25px;
   cursor: pointer;
